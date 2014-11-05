@@ -6,6 +6,7 @@ rough priority order):
  1. Increased rigor, and decreased likelihood of programmer error
  1. Increased clarity of intent
  1. Reduced verbosity
+ 1. Less time lost to comprehension of unfamiliar-looking code
  1. Fewer debates about aesthetics
 
 If you have suggestions, please see our [contribution guidelines](CONTRIBUTING.md),
@@ -16,11 +17,15 @@ then open a pull request. :zap:
 #### Whitespace
 
  * Tabs, not spaces.
+   * _Rationale:_ This lets people use their preferred indentation level.
  * End files with a newline.
+   * _Rationale:_ Git loves to complain if you don't.
  * Make liberal use of vertical whitespace to divide code into logical chunks.
- * Don’t leave trailing whitespace.
-   * Not even leading indentation on blank lines.
-
+   * _Rationale:_ It's easy to accumulate visual clutter. Fight it.
+ * Two blank lines before the start of a top-level definition.
+   * _Rationale:_ These are logically different sections of the file, make them look that way.
+ * Don’t leave trailing whitespace. Not even leading indentation on blank lines.
+   * _Rationale:_ Xcode can do this automatically. It's worth it for predictable navigation.
 
 #### Prefer implicit getters on read-only properties and subscripts
 
@@ -127,7 +132,7 @@ _Rationale:_ This makes the capturing semantics of `self` stand out more in clos
 
 #### Prefer structs over classes
 
-Unless you require functionality that can only be provided by a class (like identity or deinitializers), implement a struct instead.
+Unless you require functionality that can only be provided by a class (like identity or deinitializers or implementing a UIKit or Core Data subclass), implement a struct instead.
 
 Note that inheritance is (by itself) usually _not_ a good reason to use classes, because polymorphism can be provided by protocols, and implementation reuse can be provided through composition.
 
