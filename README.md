@@ -218,3 +218,24 @@ struct Composite<T> {
 ```
 
 _Rationale:_ Omitting redundant type parameters clarifies the intent, and makes it obvious by contrast when the returned type takes different type parameters.
+
+#### Using trailing closures when appropriate
+
+If a method or function call takes a closure as an argument, use Swift's trailing closure syntax to make it harder to lose that closing parenthesis:
+
+```swift
+dispatch_async(dispatch_get_main_queue()) {
+  completionHandler(success, error)
+}
+```
+
+On the other hand, if a method or function call takes _more than one_ closure as an argument, avoid trailing closure syntax since you'll only confuse yourself.
+
+```swift
+UIView.animateWithDuration(1.0, animations: {
+  // Animation code
+}, completion: {
+  finish in
+  // Completion handler code
+})
+```
